@@ -17,13 +17,74 @@
 <body>
 
     <header>
-        <h1> Catálogo de filmes</h1>
+        <h1>Catálogo de filmes</h1>
         <p>Encontre seus filmes favoritos</p>
     </header>
 
     <main>
 
+        <section class="cadastro">
+
+            <h2>Adicionar filme</h2>
+
+            <form id="form-filme">
+
+                <input
+                    type="text"
+                    id="titulo"
+                    placeholder="Título"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="diretor"
+                    placeholder="Diretor"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="genero"
+                    placeholder="Gênero"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="ano"
+                    placeholder="Ano"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="duracao"
+                    placeholder="Duração em minutos"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="nota"
+                    placeholder="Nota"
+                    step="0.1"
+                    min="0"
+                    max="10"
+                    required
+                >
+
+                <button type="submit">
+                    Adicionar filme
+                </button>
+
+            </form>
+
+        </section>
+
+
         <section>
+
             <h2>Filmes</h2>
 
             <div class="filmes" id="lista-filmes">

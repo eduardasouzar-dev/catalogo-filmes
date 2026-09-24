@@ -6,15 +6,15 @@
 
 body {
     font-family: 'Manrope', sans-serif;
-    background-color: #F2F0EB;
-    color: #20242B;
+    background-color: #F7F4EE;
+    color: #20252B;
 }
 
 header {
     text-align: center;
-    padding: 70px 20px;
-    background-color: #435B72;
-    color: #F8F7F3;
+    padding: 60px 20px;
+    background-color: #31556F;
+    color: #FFFFFF;
 }
 
 header h1 {
@@ -24,7 +24,7 @@ header h1 {
 }
 
 header p {
-    color: #DCE2E7;
+    color: #DCE5EB;
     font-size: 17px;
 }
 
@@ -79,14 +79,14 @@ section h2 {
 }
 
 .nota {
-    color: #435B72;
+    color: #31556F;
     font-size: 14px;
     font-weight: 700;
     white-space: nowrap;
 }
 
 .filme p {
-    color: #6D737C;
+    color: #68717A;
     margin: 8px 0;
     font-size: 14px;
 }
@@ -103,6 +103,6 @@ section h2 {
     display: flex;
     gap: 20px;
     padding-top: 15px;
-    border-top: 1px solid #E4E1DB;
+    border-top: 1px solid #E2DED6;
     margin-top: auto;
 }
