@@ -1,101 +1,289 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Catálogo de filmes</title>
+<title>Catálogo de Filmes</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <header>
-        <h1>Catálogo de filmes</h1>
-        <p>Encontre seus filmes favoritos</p>
-    </header>
+<header class="hero">
 
-    <main>
+    <div class="hero-conteudo">
 
-        <section class="cadastro">
+        <div class="hero-superior">
 
-            <h2>Adicionar filme</h2>
+            <span class="hero-status">
+                <span class="status-ponto"></span>
+                CATÁLOGO COLABORATIVO
+            </span>
 
-            <form id="form-filme">
+        </div>
+
+        <div class="hero-principal">
+
+            <div class="hero-texto">
+
+                <h1>
+                    Nosso espaço para
+                    <span>bons filmes.</span>
+                </h1>
+
+                <p>
+                    Explore, descubra novos filmes e conheça os títulos
+                    que fazem parte da nossa coleção.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<main>
+
+    <section class="catalogo">
+
+        <div class="catalogo-cabecalho">
+
+            <div class="titulo-secao">
+
+                <span class="etiqueta">
+                    NOSSA COLEÇÃO
+                </span>
+
+            </div>
+
+            <div class="catalogo-meta">
+
+                <span>
+                    Títulos cadastrados
+                </span>
+
+                <span class="meta-separador"></span>
+
+                <span>
+                    Confira os filmes
+                </span>
+
+            </div>
+
+        </div>
+
+        <div
+            class="filmes"
+            id="lista-filmes"
+        >
+
+        </div>
+
+    </section>
+
+
+    <section class="convite">
+
+        <div class="convite-conteudo">
+
+            <div>
+
+                <h2>
+                    Tem um filme que ainda não está aqui?
+                </h2>
+
+                <p>
+                    Adicione seus filmes favoritos e ajude a ampliar
+                    nossa coleção.
+                </p>
+
+            </div>
+
+        </div>
+
+        <a
+            href="#adicionar-filme"
+            class="botao-convite"
+        >
+
+            <span>
+                +
+            </span>
+
+            Adicionar filme
+
+        </a>
+
+    </section>
+
+
+    <section
+        class="cadastro"
+        id="adicionar-filme"
+    >
+
+        <div class="secao-cabecalho">
+
+            <div>
+
+                <span class="etiqueta">
+                    NOVO FILME :)
+                </span>
+
+                <h2>
+                    Adicionar filme
+                </h2>
+
+                <p>
+                    Cadastre um filme para fazer parte da nossa coleção.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form id="form-filme">
+
+            <div class="campo campo-titulo">
+
+                <label for="titulo">
+                    Nome do filme
+                </label>
 
                 <input
                     type="text"
                     id="titulo"
-                    placeholder="Título"
+                    placeholder="Ex.: Interestelar"
                     required
                 >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="diretor">
+                    Diretor
+                </label>
 
                 <input
                     type="text"
                     id="diretor"
-                    placeholder="Diretor"
+                    placeholder="Ex.: Christopher Nolan"
                     required
                 >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="genero">
+                    Gênero
+                </label>
 
                 <input
                     type="text"
                     id="genero"
-                    placeholder="Gênero"
+                    placeholder="Ex.: Ficção científica"
                     required
                 >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="ano">
+                    Ano
+                </label>
 
                 <input
                     type="number"
                     id="ano"
-                    placeholder="Ano"
+                    placeholder="Ex.: 2014"
                     required
                 >
-
-                <input
-                    type="number"
-                    id="duracao"
-                    placeholder="Duração em minutos"
-                    required
-                >
-
-                <input
-                    type="number"
-                    id="nota"
-                    placeholder="Nota"
-                    step="0.1"
-                    min="0"
-                    max="10"
-                    required
-                >
-
-                <button type="submit">
-                    Adicionar filme
-                </button>
-
-            </form>
-
-        </section>
-
-
-        <section>
-
-            <h2>Filmes</h2>
-
-            <div class="filmes" id="lista-filmes">
 
             </div>
 
-        </section>
 
-    </main>
+            <div class="campo">
 
-    <script src="script.js"></script>
+                <label for="duracao">
+                    Duração
+                </label>
+
+                <div class="input-complemento">
+
+                    <input
+                        type="number"
+                        id="duracao"
+                        placeholder="Ex.: 169"
+                        required
+                    >
+
+                    <span>
+                        minutos
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button type="submit">
+
+                <span>
+                    +
+                </span>
+
+                Adicionar filme
+
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-conteudo">
+
+        <span>
+            CATÁLOGO DE FILMES
+        </span>
+
+        <p>
+            Projeto desenvolvido durante meus estudos em Engenharia de Software.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
 
 </body>
+
 </html>

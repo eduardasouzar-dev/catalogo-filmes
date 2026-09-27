@@ -1,147 +1,109 @@
-require('dotenv').config();
+const formFilme = document.getElementById('form-filme');
+const listaFilmes = document.getElementById('lista-filmes');
 
-const express = require('express');
-const mysql = require('mysql2');
-const axios = require('axios');
 
-const app = express();
+// Cadastrar um novo filme
+formFilme.addEventListener('submit', async (evento) => {
 
-const conexao = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    port: process.env.DB_PORT,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
+    evento.preventDefault();
 
-// Permite receber dados em JSON
-app.use(express.json());
+    const filme = {
+        titulo: document.getElementById('titulo').value,
+        diretor: document.getElementById('diretor').value,
+        genero: document.getElementById('genero').value,
+        ano: document.getElementById('ano').value,
+        duracao: document.getElementById('duracao').value
+    };
 
-app.use(express.static('.'));
+    try {
 
-// Conexão com o MySQL
-conexao.connect((erro) => {
-    if (erro) {
-        console.log('Erro ao conectar com o MySQL:', erro.message);
-        return;
+        const resposta = await fetch('/filmes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(filme)
+        });
+
+        const resultado = await resposta.json();
+
+        if (!resposta.ok) {
+            throw new Error(resultado.erro);
+        }
+
+        alert(resultado.mensagem);
+
+        formFilme.reset();
+
+        carregarFilmes();
+
+    } catch (erro) {
+
+        console.log('Erro ao adicionar filme:', erro);
+        alert('Erro ao adicionar filme.');
     }
-
-    console.log('MySQL conectado com sucesso!');
-});
-
-// Rota para buscar os filmes
-app.get('/filmes', (req, res) => {
-
-    conexao.query('SELECT * FROM filmes', async (erro, resultados) => {
-
-        if (erro) {
-            console.log('Erro ao buscar filmes:', erro.message);
-            return res.status(500).send('Erro ao buscar filmes');
-        }
-
-        try {
-
-            const filmesComPoster = await Promise.all(
-
-                resultados.map(async (filme) => {
-
-                    let tituloBusca = filme.titulo;
-
-                    // O TMDB usa o título original em inglês
-                    if (filme.titulo === 'Interestelar') {
-                        tituloBusca = 'Interstellar';
-                    }
-
-                    const resposta = await axios.get(
-                        'https://api.themoviedb.org/3/search/movie',
-                        {
-                            params: {
-                                query: tituloBusca,
-                                language: 'pt-BR'
-                            },
-                            headers: {
-                                Authorization: `Bearer ${process.env.TMDB_READ_ACCESS_TOKEN}`,
-                                accept: 'application/json'
-                            }
-                        }
-                    );
-
-                    const resultadoTMDB = resposta.data.results.find(
-                        resultado => resultado.poster_path
-                    );
-
-                    console.log(
-                        filme.titulo,
-                        '→',
-                        resultadoTMDB?.title,
-                        '→',
-                        resultadoTMDB?.poster_path
-                    );
-
-                    return {
-                        ...filme,
-                        poster: resultadoTMDB?.poster_path
-                            ? `https://image.tmdb.org/t/p/w500${resultadoTMDB.poster_path}`
-                            : null
-                    };
-                })
-            );
-
-            res.json(filmesComPoster);
-
-        } catch (erro) {
-
-            console.log(
-                'Erro no TMDB:',
-                erro.response?.data || erro.message
-            );
-
-            res.status(500).send('Erro ao buscar dados no TMDB');
-        }
-    });
 });
 
 
-// Rota para adicionar um novo filme
-app.post('/filmes', (req, res) => {
+// Buscar e mostrar os filmes
+async function carregarFilmes() {
 
-    const {
-        titulo,
-        diretor,
-        genero,
-        ano,
-        duracao,
-        nota
-    } = req.body;
+    try {
 
-    const sql = `
-        INSERT INTO filmes
-        (titulo, diretor, genero, ano, duracao, nota)
-        VALUES (?, ?, ?, ?, ?, ?)
-    `;
+        const resposta = await fetch('/filmes');
 
-    conexao.query(
-        sql,
-        [titulo, diretor, genero, ano, duracao, nota],
-        (erro, resultado) => {
+        const filmes = await resposta.json();
 
-            if (erro) {
-                console.log('Erro ao adicionar filme:', erro.message);
-                return res.status(500).json({
-                    erro: 'Erro ao adicionar filme'
-                });
-            }
+        listaFilmes.innerHTML = '';
 
-            res.status(201).json({
-                mensagem: 'Filme adicionado com sucesso!',
-                id: resultado.insertId
-            });
-        }
-    );
-});
+        filmes.forEach(filme => {
+
+            listaFilmes.innerHTML += `
+                <article class="filme">
+
+                    <img
+                        src="${filme.poster}"
+                        alt="Pôster de ${filme.titulo}"
+                    >
+
+                    <div class="filme-topo">
+
+                        <h3>
+                            ${filme.titulo}
+                        </h3>
+
+                    </div>
+
+                    <p class="diretor">
+                        ${filme.diretor}
+                    </p>
+
+                    <p class="genero">
+                        ${filme.genero}
+                    </p>
+
+                    <div class="detalhes">
+
+                        <span>
+                            ${filme.ano}
+                        </span>
+
+                        <span>
+                            ${filme.duracao} minutos
+                        </span>
+
+                    </div>
+
+                </article>
+            `;
+        });
+
+    } catch (erro) {
+
+        console.log('Erro ao carregar filmes:', erro);
+    }
+}
 
 
-// Inicia o servidor
-app.listen(3000, () => {
-    console.log('Servidor rodando em http://localhost:3000');
-});
+// Carrega os filmes quando a página abre
+carregarFilmes();
