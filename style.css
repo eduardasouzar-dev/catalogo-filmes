@@ -50,7 +50,7 @@ body {
 
     min-height: 100vh;
 
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Inter', sans-serif;
 
     background:
         radial-gradient(
@@ -257,7 +257,7 @@ body {
 
     letter-spacing: -3.5px;
 
-    font-weight: 800;
+    font-weight: 700;
 
     margin-bottom: 27px;
 }
@@ -283,63 +283,6 @@ body {
     line-height: 1.7;
 
     color: #9FA7A8;
-}
-
-
-/* ================================================= */
-/* INDICADOR                                         */
-/* ================================================= */
-
-.hero-indicador {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding-bottom: 8px;
-
-    white-space: nowrap;
-}
-
-
-.indicador-numero {
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    color: #E4DED1;
-}
-
-
-.indicador-linha {
-
-    width: 45px;
-
-    height: 1px;
-
-    background: linear-gradient(
-        90deg,
-        var(--cor-luz),
-        var(--cor-laranja)
-    );
-
-    box-shadow:
-        0 0 8px rgba(231, 168, 75, 0.35);
-}
-
-
-.indicador-texto {
-
-    font-size: 10px;
-
-    font-weight: 700;
-
-    letter-spacing: 1.5px;
-
-    color: #7E8789;
 }
 
 
@@ -377,7 +320,7 @@ main {
 
     gap: 30px;
 
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 
@@ -387,7 +330,7 @@ main {
 
     margin-bottom: 9px;
 
-    font-size: 9px;
+    font-size: 12px;
 
     font-weight: 800;
 
@@ -406,7 +349,7 @@ main {
 
     letter-spacing: -0.8px;
 
-    font-weight: 800;
+    font-weight: 700;
 
     color: var(--cor-texto);
 }
@@ -422,7 +365,7 @@ main {
 
     color: #748085;
 
-    font-size: 10px;
+    font-size: 12px;
 
     font-weight: 600;
 }
@@ -441,29 +384,216 @@ main {
         0 0 7px rgba(231, 168, 75, 0.55);
 }
 
-
 /* ================================================= */
-/* CARROSSEL                                         */
+/* BARRA DE PESQUISA                                 */
 /* ================================================= */
 
-.filmes {
+.barra-pesquisa {
 
-    display: flex;
+    position: relative;
 
-    gap: 24px;
+    width: 100%;
 
-    overflow-x: auto;
-
-    padding: 8px 5px 30px;
-
-    scroll-behavior: smooth;
-
-    scrollbar-width: none;
+    margin-bottom: 20px;
 }
 
 
-.filmes::-webkit-scrollbar {
-    display: none;
+.barra-pesquisa input {
+
+    width: 100%;
+
+    height: 52px;
+
+    padding: 0 20px 0 48px;
+
+    border: 1px solid var(--cor-borda);
+
+    border-radius: 4px;
+
+    outline: none;
+
+    background-color: #101A21;
+
+    color: var(--cor-texto);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.barra-pesquisa input::placeholder {
+
+    color: #68777C;
+}
+
+
+.barra-pesquisa input:focus {
+
+    border-color: rgba(231, 168, 75, 0.65);
+
+    background-color: #142029;
+
+    box-shadow:
+        0 0 0 3px rgba(231, 168, 75, 0.06),
+        0 0 18px rgba(231, 168, 75, 0.06);
+}
+
+
+.icone-pesquisa {
+
+    position: absolute;
+
+    left: 18px;
+
+    top: 50%;
+
+    width: 14px;
+    height: 14px;
+
+    border: 1.5px solid #7D898D;
+
+    border-radius: 50%;
+
+    transform: translateY(-55%);
+
+    pointer-events: none;
+}
+
+
+.icone-pesquisa::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 6px;
+    height: 1.5px;
+
+    background-color: #7D898D;
+
+    right: -5px;
+    bottom: -2px;
+
+    transform: rotate(45deg);
+
+    transform-origin: left center;
+}
+
+
+/* ================================================= */
+/* NENHUM FILME ENCONTRADO                           */
+/* ================================================= */
+
+.nenhum-filme {
+
+    grid-column: 1 / -1;
+
+    min-height: 180px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid var(--cor-borda);
+
+    background-color: var(--cor-superficie);
+
+    color: var(--cor-texto-secundario);
+
+    font-size: 13px;
+}
+
+/* ================================================= */
+/* CONTROLE DO CARROSSEL                             */
+/* ================================================= */
+
+.catalogo-filmes {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.filmes {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-rows: repeat(2, auto);
+
+    gap: 24px;
+
+    width: 100%;
+
+    padding: 8px 5px 30px;
+
+    overflow: hidden;
+}
+
+
+.seta-carrossel {
+
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--cor-borda-clara);
+
+    border-radius: 50%;
+
+    background-color: var(--cor-superficie);
+
+    color: var(--cor-luz-clara);
+
+    font-family: inherit;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.seta-carrossel:hover {
+
+    background-color: var(--cor-superficie-clara);
+
+    border-color: var(--cor-luz);
+
+    transform: scale(1.08);
+}
+
+
+.seta-carrossel:disabled {
+
+    cursor: default;
+
+    opacity: 0.35;
 }
 
 
@@ -474,8 +604,6 @@ main {
 .filme {
 
     position: relative;
-
-    flex: 0 0 calc((100% - 48px) / 3);
 
     overflow: hidden;
 
@@ -548,7 +676,7 @@ main {
 
 
 /* ================================================= */
-/* PÔSTER                                             */
+/* PÔSTER                                            */
 /* ================================================= */
 
 .filme img {
@@ -583,48 +711,13 @@ main {
 /* CONTEÚDO DO CARD                                  */
 /* ================================================= */
 
-.filme-topo {
-
-    position: relative;
-
-    display: flex;
-
-    align-items: flex-start;
-
-    justify-content: space-between;
-
-    gap: 14px;
-
-    padding: 22px 20px 0;
-}
-
-
-.filme-topo::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 20px;
-
-    width: 38px;
-    height: 1px;
-
-    background: var(--cor-luz);
-
-    box-shadow:
-        0 0 9px rgba(231, 168, 75, 0.35);
-}
-
-
 .filme-topo h3 {
 
     font-size: 18px;
 
     line-height: 1.3;
 
-    font-weight: 800;
+    font-weight: 700;
 
     letter-spacing: -0.3px;
 
@@ -665,7 +758,7 @@ main {
 
     color: var(--cor-texto-secundario);
 
-    font-size: 12px;
+    font-size: 13px;
 }
 
 
@@ -677,11 +770,28 @@ main {
 
     color: #B7BDBA !important;
 
-    font-size: 12px;
+    font-size: 13px;
 
-    font-weight: 600;
+    font-weight: 500;
 }
 
+
+.genero {
+
+    padding: 0 20px;
+
+    margin-top: 5px;
+
+    color: #78878B !important;
+
+    font-size: 10px !important;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
 
 .genero {
 
@@ -1263,10 +1373,11 @@ footer {
 
 @media (max-width: 900px) {
 
-    .filme {
+    .filmes {
 
-        flex-basis:
-            calc((100% - 24px) / 2);
+        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-rows: repeat(3, auto);
     }
 
 }
@@ -1319,12 +1430,6 @@ footer {
     }
 
 
-    .hero-indicador {
-
-        display: none;
-    }
-
-
     main {
 
         padding:
@@ -1348,9 +1453,32 @@ footer {
     }
 
 
-    .filme {
+    .catalogo-filmes {
 
-        flex-basis: 84%;
+        gap: 8px;
+    }
+
+
+    .filmes {
+
+        grid-template-columns: 1fr;
+
+        grid-template-rows: repeat(6, auto);
+
+        gap: 18px;
+
+        padding-left: 0;
+
+        padding-right: 0;
+    }
+
+
+    .seta-carrossel {
+
+        width: 36px;
+        height: 36px;
+
+        font-size: 17px;
     }
 
 
@@ -1424,4 +1552,10 @@ footer {
         flex-direction: column;
     }
 
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Space Grotesk', sans-serif;
 }
