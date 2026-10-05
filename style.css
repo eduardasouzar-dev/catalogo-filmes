@@ -14,23 +14,26 @@
 /* ================================================= */
 
 :root {
-    --cor-fundo: #081217;
-    --cor-fundo-secundario: #0D1A21;
-    --cor-superficie: #12232B;
-    --cor-superficie-clara: #19303A;
 
-    --cor-texto: #F3EFE5;
-    --cor-texto-secundario: #A6AAA6;
-    --cor-texto-suave: #707A7E;
+    --cor-fundo: #101316;
+    --cor-fundo-secundario: #171B1F;
 
-    --cor-borda: #30414A;
-    --cor-borda-clara: #465861;
+    --cor-superficie: #1C2125;
+    --cor-superficie-clara: #252B30;
 
-    --cor-luz: #C9823A;
-    --cor-luz-clara: #E8B66A;
-    --cor-laranja: #A95F32;
+    --cor-texto: #F4F0E8;
+    --cor-texto-secundario: #B8B5AF;
+    --cor-texto-suave: #7F8588;
 
-    --cor-branco-quente: #FFF3D6;
+    --cor-borda: #30363B;
+    --cor-borda-clara: #454C52;
+
+    --cor-luz: #D47A3A;
+    --cor-luz-clara: #F0B46A;
+    --cor-laranja: #B95F2F;
+
+    --cor-branco-quente: #FFF1D2;
+
 }
 
 
@@ -49,23 +52,7 @@ body {
 
     font-family: 'Inter', sans-serif;
 
-    background:
-        radial-gradient(
-            circle at 18% 8%,
-            rgba(201, 130, 58, 0.07),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 82% 28%,
-            rgba(169, 95, 50, 0.055),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 50% 75%,
-            rgba(232, 182, 106, 0.035),
-            transparent 38%
-        ),
-        var(--cor-fundo);
+    background: var(--cor-fundo);
 
     color: var(--cor-texto);
 }
@@ -81,33 +68,13 @@ body {
 
     overflow: hidden;
 
-    background:
-        radial-gradient(
-            circle at 72% 45%,
-            rgba(201, 130, 58, 0.30),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 18% 85%,
-            rgba(169, 95, 50, 0.18),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(232, 182, 106, 0.08),
-            transparent 40%
-        ),
-        #0B151B;
+    background: var(--cor-fundo);
 
     color: #FFFFFF;
 
-    padding: 32px 20px 85px;
+    padding: 32px 20px 40px;
 
-    border-bottom: 1px solid rgba(201, 130, 58, 0.45);
-
-    box-shadow:
-        inset 0 -1px 0 rgba(232, 182, 106, 0.18),
-        0 10px 45px rgba(0, 0, 0, 0.35);
+    box-shadow: none;
 }
 
 
@@ -124,12 +91,10 @@ body {
     right: -120px;
 
     background:
-        radial-gradient(
-            circle,
+        radial-gradient(circle,
             rgba(201, 130, 58, 0.38),
             rgba(201, 130, 58, 0.14) 35%,
-            transparent 68%
-        );
+            transparent 68%);
 
     filter: blur(2px);
 
@@ -153,37 +118,6 @@ body {
 }
 
 
-.hero::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    height: 2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(201, 130, 58, 0.15) 15%,
-            rgba(201, 130, 58, 0.95) 50%,
-            rgba(232, 182, 106, 0.35) 75%,
-            transparent 100%
-        );
-
-    box-shadow:
-        0 0 10px rgba(201, 130, 58, 0.75),
-        0 0 28px rgba(201, 130, 58, 0.40),
-        0 0 55px rgba(201, 130, 58, 0.18);
-
-    opacity: 1;
-}
-
-
 .hero-conteudo {
 
     max-width: 1100px;
@@ -194,7 +128,6 @@ body {
 
     z-index: 1;
 }
-
 
 /* ================================================= */
 /* HERO SUPERIOR                                     */
@@ -273,8 +206,37 @@ body {
 
 
 .hero-texto {
-
+    margin-left: 70px;
     max-width: 760px;
+
+    position: relative;
+
+    padding-left: 24px;
+}
+
+.hero-texto::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+
+    width: 3px;
+
+    background: linear-gradient(to bottom,
+            transparent,
+            var(--cor-luz-clara) 15%,
+            var(--cor-luz) 50%,
+            var(--cor-luz-clara) 85%,
+            transparent);
+
+    box-shadow:
+        0 0 8px rgba(201, 130, 58, 0.8),
+        0 0 20px rgba(201, 130, 58, 0.45);
+
+    border-radius: 2px;
 }
 
 
@@ -445,7 +407,7 @@ main {
 
     outline: none;
 
-    background-color: #101A21;
+    background-color: #171F23;
 
     color: var(--cor-texto);
 
@@ -643,12 +605,12 @@ main {
 
     overflow: hidden;
 
-    background:
-        linear-gradient(
-            145deg,
-            #1E2D35,
-            #16232B
-        );
+   background:
+    linear-gradient(
+        145deg,
+        #202B2F,
+        #151D21
+    );
 
     border: 1px solid rgba(201, 130, 58, 0.30);
 
@@ -682,12 +644,10 @@ main {
     height: 0;
 
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             var(--cor-branco-quente),
             var(--cor-luz),
-            var(--cor-laranja)
-        );
+            var(--cor-laranja));
 
     box-shadow:
         0 0 12px rgba(232, 182, 106, 0.45);
@@ -747,8 +707,7 @@ main {
     transform: scale(1);
 
     filter:
-        brightness(1.06)
-        saturate(1.04);
+        brightness(1.06) saturate(1.04);
 }
 
 
@@ -920,7 +879,7 @@ main {
             rgba(201, 130, 58, 0.10),
             transparent 35%
         ),
-        #17252D;
+        #1C262A;
 
     color: #FFFFFF;
 
@@ -947,13 +906,11 @@ main {
     width: 2px;
 
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             transparent,
             var(--cor-luz),
             var(--cor-laranja),
-            transparent
-        );
+            transparent);
 
     box-shadow:
         0 0 14px rgba(201, 130, 58, 0.42);
@@ -1094,7 +1051,7 @@ main {
             rgba(201, 130, 58, 0.055),
             transparent 30%
         ),
-        #1A2830;
+        #1C262A;
 
     padding: 42px;
 
@@ -1105,33 +1062,6 @@ main {
     box-shadow:
         0 15px 35px rgba(0, 0, 0, 0.28);
 }
-
-
-.cadastro::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 40px;
-    right: 40px;
-
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(201, 130, 58, 0.65),
-            rgba(232, 182, 106, 0.40),
-            transparent
-        );
-
-    box-shadow:
-        0 0 12px rgba(201, 130, 58, 0.20);
-}
-
 
 .secao-cabecalho {
 
@@ -1221,7 +1151,7 @@ main {
 
     outline: none;
 
-    background-color: #101A21;
+    background-color: #171F23;
 
     color: #F1EEE6;
 
@@ -1326,11 +1256,9 @@ main {
     border-radius: 3px;
 
     background:
-        linear-gradient(
-            100deg,
+        linear-gradient(100deg,
             #A95F32,
-            #E8B66A
-        );
+            #E8B66A);
 
     color: #171C1E;
 
